@@ -21,8 +21,8 @@
         <section>
         <form action="#" id="form" class="form-group">
             <div class="row">
-                <input type="text" name="word" class="form-control" placeholder="キーワードから探す">
-                <select name="select" class="form-control col-md-3">
+                <input type="text" name="word" class="form-control col" placeholder="キーワードから探す">
+                <select name="select" class="form-control col">
                     <option value="0">すべてのジャンル</option>
                     <option value="551177">メンズファッション</option>
                     <option value="100371">レディースファッション</option>
@@ -64,47 +64,26 @@
                     <option value="111427">住宅・不動産</option>
                     <option value="101381">カタログギフト・チケット</option>
                 </select>
-                <button type="submit" class="btn btn-primary col-md-3">検索</button>
-                <select name="sort"  class="col-md-3 form-control" onchange="sortall()">
+                <select name="sort"  class="form-control col" onchange="sortall()">
                     <option value="standard">標準</option>
                     <option value="+itemPrice">安い順</option>
                     <option value="-itemPrice">高い順</option>
-                </select>    
+                </select>
+                <button type="submit" class="btn btn-primary col">検索</button>
             </div>
        
-    
     <p id="output"></p>
     <ul id="rakutenItem"></ul>
-
-    <div class="border col-12">
         <br>
             <div class="row" style="margin:0 auto">
                 <div class="col-md">
-                    <div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-outline-primary" onclick="pageJump(0)">最初へ</button>
-                        </div>
-                        <div name="page" class="btn-group" role="group">
-                            <button type="button" class="btn btn-outline-primary" onclick="pageJump(0)">0</button>
-                            <button type="button" class="btn btn-outline-primary" onclick="pageJump(1)">1</button>
-                            <button type="button" class="btn btn-outline-primary" onclick="pageJump(2)">2</button>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-outline-primary">最後へ</button>
-                        </div>
+                    <div id="pageItem">
                     </div>
                 </div>
             </div>
         <br>
-    </div>
 
 </form>
-
-    <table class="table table-bordered">
-        <tr id="pageItem">
-        </tr>
-    </table>
-
 </section>
 </div><!-- /.container -->
 </main>

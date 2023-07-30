@@ -17,7 +17,7 @@ function sortall() {
             'genreId': genre,
             'keyword': search,
             'sort': sort,
-            //'page': 2,
+            //'page': 0,
         }
     })
 
@@ -47,6 +47,27 @@ function sortall() {
             allItem += allItemParts;
         }
         document.getElementById("rakutenItem").innerHTML = allItem;
+
+        let allPage =
+        `<div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" onclick="pageJump(0)">最初へ</button>
+        </div>
+        <div class="btn-group" role="group">`;
+
+        let allPageParts = "";
+        for(let i = 0; i < data.pageCount && i < 10; i++) {
+                allPageParts = 
+                `<button type="button" class="btn btn-outline-primary" onclick="pageJump(` + i + `)">` + (i+1) + `</button>`;
+                allPage += allPageParts;
+        }
+
+        allPage +=
+        `</div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" onclick="pageJump(` + (data.pageCount-1)  + `)">最後へ</button>
+        </div>`;
+
+        document.getElementById("pageItem").innerHTML = allPage;
     })
     .fail(function() {
         window.alert('読み込みエラー');
@@ -58,7 +79,6 @@ document.getElementById('form').onsubmit = function(event) {
     const search = document.getElementById('form').word.value;
     const genre = document.getElementById('form').select.value;
     const sort = document.getElementById('form').sort.value;
-    //const page = document.getElementById('form').page.value;
     
     //ファイルの読み込み
     $.ajax({
@@ -70,15 +90,12 @@ document.getElementById('form').onsubmit = function(event) {
             'genreId': genre,
             'keyword': search,
             'sort': sort,
-            //'page': page,
         }
     })
 
     .done(function(data) {
         console.log(data);
-        console.log(data.pageCount);
         let allItem = "";
-        let allPage = "";
         for (let i = 0; i < data.Items.length; i++) {
             const product = data.Items[i];
             let allItemParts =
@@ -103,11 +120,25 @@ document.getElementById('form').onsubmit = function(event) {
         }
         document.getElementById("rakutenItem").innerHTML = allItem;
 
-        for(let i = 0; i < data.pageCount; i++) {
-            let allPageParts = 
-                `<td>` + i + `</td>`;
-            allPage += allPageParts;
+        let allPage =
+        `<div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" onclick="pageJump(0)">最初へ</button>
+        </div>
+        <div class="btn-group" role="group">`;
+
+        let allPageParts = "";
+        for(let i = 0; i < data.pageCount && i < 10; i++) {
+                allPageParts = 
+                `<button type="button" class="btn btn-outline-primary" onclick="pageJump(` + i + `)">` + (i+1) + `</button>`;
+                allPage += allPageParts;
         }
+
+        allPage +=
+        `</div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" onclick="pageJump(` + (data.pageCount-1)  + `)">最後へ</button>
+        </div>`;
+
         document.getElementById("pageItem").innerHTML = allPage;
         // 検索結果の出力
         document.getElementById('output').textContent = `「${search}」の検索結果：${data.count}件`;
@@ -162,6 +193,34 @@ function pageJump(pageNum) {
             allItem += allItemParts;
         }
         document.getElementById("rakutenItem").innerHTML = allItem;
+
+        let allPage =
+        `<div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" onclick="pageJump(0)">最初へ</button>
+        </div>
+        <div class="btn-group" role="group">`;
+
+        let allPageParts = "";
+        for(let i = 0; i < data.pageCount && i < 10; i++) {
+            if(pageNum < 10){
+                allPageParts = 
+                `<button type="button" class="btn btn-outline-primary" onclick="pageJump(` + i + `)">` + (i+1) + `</button>`;
+                allPage += allPageParts;
+            }
+            else if(pageNum+i < data.pageCount + 5){
+                allPageParts = 
+                `<button type="button" class="btn btn-outline-primary" onclick="pageJump(` + (pageNum+i-5) + `)">` + (pageNum+i-4) + `</button>`;
+                allPage += allPageParts;
+            }
+        }
+
+        allPage +=
+        `</div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" onclick="pageJump(` + (data.pageCount-1)  + `)">最後へ</button>
+        </div>`;
+
+        document.getElementById("pageItem").innerHTML = allPage;
     })
     .fail(function() {
         window.alert('読み込みエラー');
