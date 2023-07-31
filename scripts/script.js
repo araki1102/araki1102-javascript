@@ -202,7 +202,7 @@ function pageJump(pageNum) {
 
         let allPageParts = "";
         for(let i = 0; i < data.pageCount && i < 10; i++) {
-            if(pageNum < 10){
+            if(pageNum < 5){
                 allPageParts = 
                 `<button type="button" class="btn btn-outline-primary" onclick="pageJump(` + i + `)">` + (i+1) + `</button>`;
                 allPage += allPageParts;
