@@ -1,98 +1,103 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JavaScript練習</title>
-<link href="favicon.ico" rel="shortcut icon">
-<link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,500" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JavaScript練習</title>
+    <link href="favicon.ico" rel="shortcut icon">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,500" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<header>
-<div class="container">
-<h1>楽天市場API</h1>
-<h2></h2>
-</div><!-- /.container -->
-</header>
-<main>
+    <header>
     <div class="container">
-        <section>
-        <form action="#" id="form" class="form-group">
-            <div class="row">
-                <input type="text" name="word" class="form-control col" placeholder="キーワードから探す">
-                <select name="select" class="form-control col">
-                    <option value="0">すべてのジャンル</option>
-                    <option value="551177">メンズファッション</option>
-                    <option value="100371">レディースファッション</option>
-                    <option value="558885">靴</option>
-                    <option value="216131">バッグ・小物・ブランド雑貨</option>
-                    <option value="216129">ジュエリー・アクセサリー</option>
-                    <option value="558929">腕時計</option>
-                    <option value="100433">インナー・下着・ナイトウェア</option>
-                    <option value="100533">キッズ・ベビー・マタニティ</option>
-                    <option value="100227">食品</option>
-                    <option value="551167">スイーツ・お菓子</option>
-                    <option value="100316">水・ソフトドリンク</option>
-                    <option value="100317">ワイン</option>
-                    <option value="510915">ビール・洋酒</option>
-                    <option value="510901">日本酒・焼酎</option>
-                    <option value="100026">パソコン・周辺機器</option>
-                    <option value="564500">スマートフォン・タブレット</option>
-                    <option value="211742">TV・オーディオ・カメラ</option>
-                    <option value="562637">家電</option>
-                    <option value="565004">光回線・モバイル通信</option>
-                    <option value="101240">CD・DVD</option>
-                    <option value="112493">楽器・音響機器</option>
-                    <option value="101070">スポーツ・アウトドア</option>
-                    <option value="101077">ゴルフ用品</option>
-                    <option value="100804">インテリア・寝具・収納</option>
-                    <option value="215783">日用品雑貨・文房具・手芸</option>
-                    <option value="558944">キッチン用品・食器・調理器具</option>
-                    <option value="100005">花・ガーデン・DIY</option>
-                    <option value="101213">ペット・ペットグッズ</option>
-                    <option value="100938">ダイエット・健康</option>
-                    <option value="551169">医薬品・コンタクト・介護</option>
-                    <option value="100939">美容・コスメ・香水</option>
-                    <option value="566382">おもちゃ</option>
-                    <option value="101205">テレビゲーム</option>
-                    <option value="200162">本・雑誌・コミック</option>
-                    <option value="101114">車・バイク</option>
-                    <option value="503190">車用品・バイク用品</option>
-                    <option value="101438">サービス・リフォーム</option>
-                    <option value="111427">住宅・不動産</option>
-                    <option value="101381">カタログギフト・チケット</option>
-                </select>
-                <select name="sort"  class="form-control col" onchange="sortall()">
-                    <option value="standard">標準</option>
-                    <option value="%2BitemPrice">安い順</option>
-                    <option value="-itemPrice">高い順</option>
-                </select>
-                <button type="button" class="btn btn-primary col" onclick="searchItem()">検索</button>
-            </div>
-       
-    <p id="output"></p>
-    <ul id="rakutenItem"></ul>
-        <br>
-            <div class="row" style="margin:0 auto">
-                <div class="col-md">
-                    <div id="pageItem">
+        <h1>楽天市場API</h1>
+        <h2></h2>
+    </div><!-- /.container -->
+    </header>
+    <main>
+        <div class="container">
+            <section>
+                <form action="#" id="form" class="form-group">
+                    <div class="row">
+                        <input type="text" name="word" class="form-control col" placeholder="キーワードから探す">
+                        <select name="select" class="form-control col">
+                            <option value="0">すべてのジャンル</option>
+                            <option value="551177">メンズファッション</option>
+                            <option value="100371">レディースファッション</option>
+                            <option value="558885">靴</option>
+                            <option value="216131">バッグ・小物・ブランド雑貨</option>
+                            <option value="216129">ジュエリー・アクセサリー</option>
+                            <option value="558929">腕時計</option>
+                            <option value="100433">インナー・下着・ナイトウェア</option>
+                            <option value="100533">キッズ・ベビー・マタニティ</option>
+                            <option value="100227">食品</option>
+                            <option value="551167">スイーツ・お菓子</option>
+                            <option value="100316">水・ソフトドリンク</option>
+                            <option value="100317">ワイン</option>
+                            <option value="510915">ビール・洋酒</option>
+                            <option value="510901">日本酒・焼酎</option>
+                            <option value="100026">パソコン・周辺機器</option>
+                            <option value="564500">スマートフォン・タブレット</option>
+                            <option value="211742">TV・オーディオ・カメラ</option>
+                            <option value="562637">家電</option>
+                            <option value="565004">光回線・モバイル通信</option>
+                            <option value="101240">CD・DVD</option>
+                            <option value="112493">楽器・音響機器</option>
+                            <option value="101070">スポーツ・アウトドア</option>
+                            <option value="101077">ゴルフ用品</option>
+                            <option value="100804">インテリア・寝具・収納</option>
+                            <option value="215783">日用品雑貨・文房具・手芸</option>
+                            <option value="558944">キッチン用品・食器・調理器具</option>
+                            <option value="100005">花・ガーデン・DIY</option>
+                            <option value="101213">ペット・ペットグッズ</option>
+                            <option value="100938">ダイエット・健康</option>
+                            <option value="551169">医薬品・コンタクト・介護</option>
+                            <option value="100939">美容・コスメ・香水</option>
+                            <option value="566382">おもちゃ</option>
+                            <option value="101205">テレビゲーム</option>
+                            <option value="200162">本・雑誌・コミック</option>
+                            <option value="101114">車・バイク</option>
+                            <option value="503190">車用品・バイク用品</option>
+                            <option value="101438">サービス・リフォーム</option>
+                            <option value="111427">住宅・不動産</option>
+                            <option value="101381">カタログギフト・チケット</option>
+                        </select>
+                        <select name="sort"  class="form-control col" onchange="searchItem(0)">
+                            <option value="standard">標準</option>
+                            <option value="%2BitemPrice">安い順</option>
+                            <option value="-itemPrice">高い順</option>
+                        </select>
+                        <button type="button" class="btn btn-primary col" onclick="searchItem(0)">検索</button>
                     </div>
-                </div>
-            </div>
-        <br>
 
-</form>
-</section>
-</div><!-- /.container -->
-</main>
-<footer>
-<div class="container">
-<p>JavaScript Samples</p>
-</div><!-- /.container -->
-</footer>
-<script src="scripts/script.js"></script>
-<script src="js/bootstrap.min.js"></script>
+                    <div class="row">
+                        <input type="text" name="minPrice" class="form-control col" placeholder="最低金額：円" maxlength="9" oninput="value = value.replace(/[^0-9]+/i,'');" />
+                        <input type="text" name="maxPrice" class="form-control col" placeholder="最高金額：円" maxlength="9" oninput="value = value.replace(/[^0-9]+/i,'');" />
+                        <!-- <input type="text" name="ngword" class="form-control col" placeholder="除外キーワード"> -->
+                    </div>
+                    
+                    <p id="output"></p>
+                    <ul id="rakutenItem"></ul>
+                    <br>
+                    <div class="row" style="margin:0 auto">
+                        <div class="col-md">
+                            <div id="pageItem">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </form>
+            </section>
+        </div><!-- /.container -->
+    </main>
+    <footer>
+        <div class="container">
+            <p>JavaScript Samples</p>
+        </div><!-- /.container -->
+    </footer>
+    <script src="scripts/script.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
