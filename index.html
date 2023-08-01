@@ -66,10 +66,10 @@
                 </select>
                 <select name="sort"  class="form-control col" onchange="sortall()">
                     <option value="standard">標準</option>
-                    <option value="+itemPrice">安い順</option>
+                    <option value="%2BitemPrice">安い順</option>
                     <option value="-itemPrice">高い順</option>
                 </select>
-                <button type="submit" class="btn btn-primary col">検索</button>
+                <button type="button" class="btn btn-primary col" onclick="searchItem()">検索</button>
             </div>
        
     <p id="output"></p>
@@ -92,7 +92,6 @@
 <p>JavaScript Samples</p>
 </div><!-- /.container -->
 </footer>
-<script src="scripts/jquery-3.7.0.min.js"></script>
 <script src="scripts/script.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
