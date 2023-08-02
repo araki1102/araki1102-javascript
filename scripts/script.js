@@ -6,19 +6,24 @@ function searchItem(pageNum) {
     const genre = document.getElementById('form').select.value;
     const minPrice = document.getElementById('form').minPrice.value;
     const maxPrice = document.getElementById('form').maxPrice.value;
-    //const ngword = document.getElementById('form').ngword.value;
+    let ngWord = document.getElementById('form').ngword.value;
+    let nitem = "";
+    if(ngWord != "") {
+        nitem = "&NGKeyword=" + ngWord;
+    }
 
 (async () => {
-        const url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601?format=json&keyword="+search+"&genreId="+genre+"&sort="+sort+"&page="+(pageNum+1)+"&minPrice="+minPrice+"&maxPrice="+maxPrice+"&NGKeyword="+ngword+"&applicationId=1050118187675753318";
+        const url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601?format=json&applicationId=1050118187675753318&formatVersion=2&keyword="+search+"&genreId="+genre+"&sort="+sort+"&page="+(pageNum+1)+"&minPrice="+minPrice+"&maxPrice="+maxPrice+nitem;
         const res = await fetch(url);
         let json;
         try {
             if (res.ok) {
                 json = await res.json();
                 console.log(json);
+                console.log(url);
                 let allItem = "";
                 for (let i = 0; i < json.Items.length; i++) {
-                    const product = json.Items[i].Item;
+                    const product = json.Items[i];
                     let allItemParts =
                         `<li><a href="` +
                         product.itemUrl +
@@ -26,7 +31,7 @@ function searchItem(pageNum) {
                         (i + 1) +
                         `">
                         <img src="` +
-                        product.mediumImageUrls[0].imageUrl +
+                        product.mediumImageUrls[0] +
                         `" alt="` +
                         product.itemName +
                         `" class="productImage">
