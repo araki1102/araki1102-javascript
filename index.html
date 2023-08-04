@@ -76,16 +76,21 @@
                         <input type="text" name="minPrice" class="form-control col" placeholder="最低金額：円" maxlength="9" oninput="value = value.replace(/[^0-9]+/i,'');" />
                         <input type="text" name="maxPrice" class="form-control col" placeholder="最高金額：円" maxlength="9" oninput="value = value.replace(/[^0-9]+/i,'');" />
                         <input type="text" name="ngword" class="form-control col" placeholder="除外キーワード">
+                        <select name="display"  class="form-control col" onchange="searchItem(0)">
+                            <option value="3">３０件</option>
+                            <option value="6">６０件</option>
+                            <option value="10">１００件</option>
+                            <option value="50">５００件</option>
+                        </select>
                     </div>
                     
                     <p id="output"></p>
                     <ul id="rakutenItem"></ul>
                     <br>
-                    <div class="row" style="margin:0 auto">
-                        <div class="col-md">
-                            <div id="pageItem">
-                            </div>
-                        </div>
+                    <div id="pageItem">
+                        <select name="page" class="form-control col">
+                            <option value="0">1</option>
+                        </select>
                     </div>
                     <br>
                 </form>
