@@ -150,8 +150,51 @@ ul#rakutenItem p {
     margin: 0;
 }
 
+ul#rakutenRanking {
+    list-style: none;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0;
+}
+ul#rakutenRanking li {
+    width: calc(20% - 20px);
+}
+ul#rakutenRanking li a {
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 12%), 0 2px 3px 0 rgb(0 0 0 / 22%);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    height: 100%;
+    padding-bottom: 12px;
+    position: relative;
+}
+ul#rakutenRanking li a:hover {
+    box-shadow: 0 15px 30px -5px rgb(0 0 0 / 15%), 0 0 5px rgb(0 0 0 / 10%);
+    transform: translateY(-4px);
+}
+
+ul#rakutenRanking p {
+    color: #313131;
+    margin: 0;
+}
+
 /* 画像 */
 ul#rakutenItem li a img {
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 3px 3px 0 0;
+}
+
+ul#rakutenRanking li a img {
     height: 150px;
     object-fit: contain;
     margin-bottom: 15px;

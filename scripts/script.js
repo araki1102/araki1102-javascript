@@ -15,6 +15,9 @@ function searchItem(pageNum) {
     let displayParts = 0;
     let allItem = "";
     const pages = parseInt(document.getElementById('form').page.value) || 0;
+    let ranking = "";
+    let rankList = [];
+    const rankingValue = 5;
 
     (async () => {
     itemTable : for (let pageRotate = 0; pageRotate < display; pageRotate++) {
@@ -67,12 +70,27 @@ function searchItem(pageNum) {
                             </a></li>`;
                         allItem += allItemParts;
                         displayParts++;
+
+                        // ランキングの設定
+                        const nowRank = product.reviewAverage * product.reviewCount;
+                        rankList.push({key: nowRank, element: allItemParts});
+
                         if (display*10 == displayParts) {
-                            document.getElementById('rakutenItem').innerHTML = allItem;    
+                            document.getElementById('rakutenItem').innerHTML = allItem;
+
+                            rankList.sort((a, b)=>{
+                                return b.key - a.key
+                            })
+                            for (let i = 0; i < rankingValue; i++) {
+                                ranking += rankList[i].element;
+                                console.log(rankList[i].element);
+                            }
+                            document.getElementById('rakutenRanking').innerHTML = ranking;
+                            
                             break itemTable;
                         }
                 }
-                document.getElementById("rakutenItem").innerHTML = allItem;  
+                document.getElementById("rakutenItem").innerHTML = allItem;
 
                 // 0.5秒の待機時間
                 await new Promise(resolve => setTimeout(resolve, 500))
