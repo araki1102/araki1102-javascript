@@ -18,6 +18,8 @@ function searchItem(pageNum) {
     let ranking = "";
     let rankList = [];
     const rankingValue = 5;
+    const timer = 100, Timer = 1000;
+    const itemDisplay = 10;
 
     (async () => {
     itemTable : for (let pageRotate = 0; pageRotate < display; pageRotate++) {
@@ -30,8 +32,14 @@ function searchItem(pageNum) {
                 console.log(json);
                 console.log(url);
                 
+                // 検索ボタン１秒待機
+                const btn = document.getElementById('searchBtn');
+                btn.disabled = true;
+                setTimeout(() => { btn.disabled = false; }, Timer);
+
                 // 検索結果の出力
                 document.getElementById('output').textContent = `「${search}」の検索結果：${json.count}件`;
+                document.getElementById('recommend').textContent = `あなたへのおすすめ商品`;
 
                 // ページ数の表示
                 const pageCountAll = Math.floor(json.pageCount/display);
@@ -75,7 +83,7 @@ function searchItem(pageNum) {
                         const nowRank = product.reviewAverage * product.reviewCount;
                         rankList.push({key: nowRank, element: allItemParts});
 
-                        if (display*10 == displayParts) {
+                        if (display*itemDisplay == displayParts) {
                             document.getElementById('rakutenItem').innerHTML = allItem;
 
                             rankList.sort((a, b)=>{
@@ -92,8 +100,8 @@ function searchItem(pageNum) {
                 }
                 document.getElementById("rakutenItem").innerHTML = allItem;
 
-                // 0.5秒の待機時間
-                await new Promise(resolve => setTimeout(resolve, 500))
+                // 0.1秒の待機時間
+                await new Promise(resolve => setTimeout(resolve, timer))
 
             } else {
                 throw new Error(res.status);
