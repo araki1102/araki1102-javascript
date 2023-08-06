@@ -18,7 +18,7 @@ function searchItem(pageNum) {
     let ranking = "";
     let rankList = [];
     const rankingValue = 5;
-    const timer = 100, Timer = 1000;
+    const timer = 500, Timer = 300;
     const itemDisplay = 10;
 
     (async () => {
