@@ -69,7 +69,7 @@
                             <option value="%2BitemPrice">安い順</option>
                             <option value="-itemPrice">高い順</option>
                         </select>
-                        <button type="button" class="btn btn-primary col" onclick="searchItem(0)">検索</button>
+                        <button type="button" id="searchBtn" class="btn btn-primary col" onclick="searchItem(0)">検索</button>
                     </div>
 
                     <div class="row">
@@ -94,7 +94,7 @@
                     </div>
                     <br>
 
-                    <p>あなたへのおすすめ商品</p>
+                    <p id="recommend"></p>
                     <ul id="rakutenRanking"></ul>
                 </form>
             </section>
