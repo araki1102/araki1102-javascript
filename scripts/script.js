@@ -1,5 +1,8 @@
 'use strict';
 
+document.getElementById('searchBar').style.visibility = "hidden";
+document.getElementById('pageItem').style.visibility = "hidden";
+
 function searchItem(pageNum) {
     const sort = document.getElementById('form').sort.value;
     const search = document.getElementById('form').word.value;
@@ -18,7 +21,7 @@ function searchItem(pageNum) {
     let ranking = "";
     let rankList = [];
     const rankingValue = 5;
-    const timer = 500, Timer = 300;
+    const timer = 300, Timer = 500 * display;
     const itemDisplay = 10;
 
     (async () => {
@@ -31,8 +34,9 @@ function searchItem(pageNum) {
                 json = await res.json();
                 console.log(json);
                 console.log(url);
+                document.getElementById('searchBar').style.visibility = "visible";
                 
-                // 検索ボタン１秒待機
+                // 検索ボタンの連打防止
                 const btn = document.getElementById('searchBtn');
                 btn.disabled = true;
                 setTimeout(() => { btn.disabled = false; }, Timer);
@@ -42,6 +46,7 @@ function searchItem(pageNum) {
                 document.getElementById('recommend').textContent = `あなたへのおすすめ商品`;
 
                 // ページ数の表示
+                document.getElementById('pageItem').style.visibility = "visible";
                 const pageCountAll = Math.floor(json.pageCount/display);
                 let allPage =
                 `<select name="page" class="formcontrol col" onchange="searchItem(` + pages*display + `)">`;
@@ -91,7 +96,6 @@ function searchItem(pageNum) {
                             })
                             for (let i = 0; i < rankingValue; i++) {
                                 ranking += rankList[i].element;
-                                console.log(rankList[i].element);
                             }
                             document.getElementById('rakutenRanking').innerHTML = ranking;
                             
@@ -100,15 +104,20 @@ function searchItem(pageNum) {
                 }
                 document.getElementById("rakutenItem").innerHTML = allItem;
 
-                // 0.1秒の待機時間
+                // 0.3秒の待機時間
                 await new Promise(resolve => setTimeout(resolve, timer))
 
             } else {
                 throw new Error(res.status);
             }
         } catch (e) {
+            if (search == "") {
+                document.getElementById('output').textContent = "検索キーワードが空欄です。キーワードを入力して検索してください。";
+            }
+            if (minPrice > maxPrice) {
+                document.getElementById('output').textContent = "最高金額が最低金額を上回るように金額設定してください。";
+            }
             console.error(e);
-            window.alert(e);
         }
     }
     })();
