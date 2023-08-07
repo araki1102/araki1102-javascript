@@ -1,6 +1,6 @@
 'use strict';
 
-document.getElementById('searchBar').style.visibility = "hidden";
+// document.getElementById('searchBar').style.visibility = "hidden";
 document.getElementById('pageItem').style.visibility = "hidden";
 
 function searchItem(pageNum) {
@@ -21,7 +21,7 @@ function searchItem(pageNum) {
     let ranking = "";
     let rankList = [];
     const rankingValue = 5;
-    const timer = 300, Timer = 500 * display;
+    const timer = 300, Timer = 100 * display;
     const itemDisplay = 10;
 
     (async () => {
